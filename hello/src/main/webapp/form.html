@@ -16,9 +16,11 @@
         점수: <input type="number" name="score1"><br>
         <input type="submit" value="전송">
     </form>
-
+	
+	<form action="otherForm" action=""></form>
     <script>
-        document.querySelector('form[name="myForm"]').addEventListener('submit', function () {
+			console.log(window)
+		    document.querySelector('form[name="myForm"]').addEventListener('submit', function () {
             console.log(this);
             event.preventDefault(); // 해당 이벤트의 전송 기능을 차단.
             console.log(this.querySelector('[name="age1"]').value);
@@ -34,8 +36,9 @@
 
             this.action = 'MemberServlet';
 
-            this.submit();
-
+            //this.submit();
+			document.forms.myForm.submit();
+			//document.forms[0].submit();
         })
     </script>
 </body>

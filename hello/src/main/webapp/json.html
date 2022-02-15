@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>json.html</title>
+</head>
+<body>
+	<script>
+	//Object => {name:'홍길동', age: 20, score: 80}
+	//JSON   => {"name":'홍', "age":20, "score": 80}
+	//Server <==> Client 데이터를 주고 받고... 포맷. 
+	//xml    => <row><name>홍</name><age>20</age><score>80</score></row>
+	
+	var member = {
+			memberId: 20,
+			memberName: '홍길동',
+			isMarriage: false,
+			birth: new Date()
+			
+	}
+	var json = JSON.stringify(member); // Object => JSON
+	console.log(member);
+	console.log(json);
+	
+	var jObj = JSON.parse(json);  // JSON => Object.
+	console.log(jObj);	
+	
+	// 페이지의 데이터 부분 쉽게 가져오는 Object : XMLHttpRequest
+	var xhtp= new XMLHttpRequest();
+	xhtp.open('GET','MemberJsonServlet'); //매개값: 요청방식, 요청페이지url
+	xhtp.send();
+	xhtp.onload = function() {
+		console.log(xhtp);
+		var data = JSON.parse(xhtp.responseText); // JSON => Object.
+		// data [{},{},{}]
+		console.log(data);
+		var table = document.createElement('table');
+		table.setAttribute('border','1');
+		var titles = ['name', 'age', 'score', 'is_marriage'];
+		data.forEach(function(val, ind, ary) {
+			var tr = document.createElement('tr');
+			
+			for(let field of titles){
+				var td = document.createElement('td'); 	
+				td.innerText = val[field];
+				tr.appendChild(td); //<tr><td>..</td><td>..</td></tr>..
+			}
+			table.appendChild(tr);
+		});
+		var div = document.createElement('div');
+		document.createElement('div');
+		for(let field in data){
+			
+		var p = document.createElement('p');
+		p.innerText = `field: ${field}, value: ${data[field]}`;
+		div.appendChild(p);
+		}
+		document.body.appendChild(table);	//<body><table>..</table></body>
+		//document.body.appendChild(div);
+	}
+	</script>
+</body>
+</html>
