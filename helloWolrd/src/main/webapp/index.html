@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var xhtp = new XMLHttpRequest();
+		xhtp.open('GET', 'MemberListServlet'); //
+		xhtp.send();
+		xhtp.onload = function(){
+			console.log(xhtp);
+			var result = JSON.parse(xhtp.responseText); // json => object 변환
+			var ul = document.createElement('ul');
+			for (let obj of result){
+				var li = document.createElement('li');
+				li.innerText = obj.name + '-' + obj.age + '-' + obj.score
+				ul.append(li);
+			}
+			document.body.append(ul); // <body><ul><li>....</li></ul></body>
+		}
+	</script>
+</body>
+</html>

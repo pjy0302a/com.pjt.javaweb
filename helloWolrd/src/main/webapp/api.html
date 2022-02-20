@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var url = 'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=json&serviceKey=rg%2FHnHphM1NCrAo6VQbwg30xRhxsqdIQpfrEq53E88lb%2Fa%2BIFy9kNuOM5zv6nXY80Sks1g%2FIVT1jSDReat8J4w%3D%3D'
+
+		var xhtp = new XMLHttpRequest(); // ajax(비동기방식의 처리)
+		xhtp.open('GET', url);
+		xhtp.send();
+		xhtp.onload = function() {
+			console.log(xhtp.responseText);
+			var result = JSON.parse(xhtp.responseText);
+			// 화면에 출력해주기위한 항목.
+			var contents = ['id','centerName', 'address', 'phoneNumber', 'sido', 'map']
+			// table형식으로..
+			var table = document.createElement('table');
+			table.setAttribute('border','1');
+			table.setAttribute('id','myTables');
+			// 헤더부분.
+			var thead = document.createElement('thead');
+			var tr = document.createElement('tr');
+			contents.forEach(function(field, ind, ary){
+				var td = document.createElement('th');
+				td.innerText = field;
+				tr.append(td);
+			});
+			thead.append(tr);
+			// 바디부분.
+			var tbody = document.createElement('tbody');
+			result.data.forEach(function(center, ind, ary) {
+				
+				//id, centerName, address, phoneNuber, sido, sigungu, lat, lng
+				tr = document.createElement('tr');
+				for(let field of contents){
+					console.log(center);
+					td = document.createElement('td');
+					// map항목은 다음지도 api 
+					if(field == 'map'){
+						var a = document.createElement('a');
+						a.innerText = '지도보기';
+						a.setAttribute('href','map.html?center='+center.centerName+'&xpos='+center.lat+'&ypos='+center.lng);
+						a.setAttribute('target','_blank');
+						td.append(a);
+					} else{
+						td.innerText = center[field];
+					}
+					
+					tr.append(td);
+				}
+				tbody.append(tr);	
+				
+				//집주소
+				
+				tr = document.createElement('tr');
+				for(let field of contents){
+					td = document.createElement('td');
+					// map항목은 다음지도 api 
+					if(field == 'map'){
+						
+						var a = document.createElement('a');
+						a.innerText = '지도보기';
+						a.setAttribute('href','map.html?center='+'경상북도 경산시 원효로28길 16'+'&xpos='+center.lat+'&ypos='+center.lng);
+						a.setAttribute('target','_blank');
+						td.append(a);
+					} else{
+						td.innerText = center[field];
+					}
+					
+					tr.append(td);
+				}
+				tbody.append(tr);
+			});
+			table.append(thead, tbody);
+			document.body.append(table);
+		}
+	</script>
+</body>
+</html>
