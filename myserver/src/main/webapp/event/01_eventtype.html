@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+	<input id="txtName">
+	<button type="button" id="btn">버튼</button>
+	<script>
+		btn.addEventListener("click", function() {
+			alert("클릭됨!")
+		})
+		btn.addEventListener("click", function() {
+			console.log("클릭됨!")
+		})
+
+		txtName.addEventListener("mouseover", function() {
+			txtName.style.backgroundColor = 'yellow';
+		})
+		txtName.addEventListener("mouseout", function() {
+			txtName.style.backgroundColor = 'white';
+		})
+		txtName.addEventListener("change", function() {
+			console.log("변경됨!")
+		})
+
+		//타켓                     타입    이벤트핸들러
+		window.addEventListener("load", init)
+		function init() {
+			window.open('../dom.html', 'pop', 'width=200, height=200');
+			console.log('익명함수');
+		};
+	</script>
+</body>
+</html>

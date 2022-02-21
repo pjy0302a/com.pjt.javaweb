@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="form" action="event_proc.html" >
+        <label>이름 <input type="text" name="userid" id="userid"></label><br>
+        <!-- <input type="submit" value='저장'></button>  -->
+        <button>submit</button>
+    </form>
+
+    <a href="http://www.naver.com" id="abtn">naver</a><br>
+    <button type="button" id="btn">button</button><br>
+    <p id="log"></p>
+
+    <script>
+       form.onsubmit =  function(){
+            alert('submit'); 
+            if (userid.value=='') {
+                console.log('no data'); 
+                return false; 
+            } 
+            else 
+                return true;
+        }
+
+        abtn.onclick =  function(){
+            alert('a tag'); if(!confirm('이동?')) event.preventDefault()
+        }
+
+        btn.onclick = function(){
+            alert('button');
+            form.submit();
+        }
+
+        log.onclick =  function(){
+            alert('div');
+        }
+    </script>
+</body>
+</html>

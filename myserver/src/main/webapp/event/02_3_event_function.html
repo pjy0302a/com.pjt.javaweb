@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="form" action="event_proc.html" onsubmit="return fnSubmit()">
+        <label>이름 <input type="text" name="userid" id="userid"></label><br>
+        <!-- <input type="submit" value='저장'></button>  -->
+        <button>submit</button>
+    </form>
+
+    <a href="http://www.naver.com" id="abtn" onclick="fnA()">naver</a><br>
+
+    <button type="button" id="btn" onclick="fnButton()">button</button><br>
+
+    <p id="log" onclick="fnP()">p tag</p>
+
+    <script>
+        function fnSubmit(){
+            alert('submit'); 
+            if (userid.value=='') {
+                console.log('no data'); 
+                return false; 
+            } 
+            else 
+                return true;
+        }
+
+        function fnA(){
+            alert('a tag'); if(!confirm('이동?')) event.preventDefault()
+        }
+
+        function fnButton(){
+            alert('button');
+            form.submit();
+        }
+
+        function fnP(){
+            alert('div');
+        }
+    </script>
+</body>
+</html>

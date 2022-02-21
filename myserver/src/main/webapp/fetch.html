@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>The XMLHttpRequest Object</h2>
+<p>Let AJAX change this text.</p>
+<input id = "targetDt" value=20220220 >
+<select id = "nationCd">
+	<option value="">전체</option>
+	<option value="K">국내</option>
+	<option value="F">해외</option>
+	
+</select>
+<button type="button" id=btnMovie>Change Content</button>
+<div id="demo"></div>
+<!--  영화상세정보 중에서 출연배우 , 감독 -->
+<input id="movieCd">
+<button type="button" id=btnInfo> Change Content</button>
+<div id="info"></div>
+<script>
+btnMovie.addEventListener("click", function(){
+	let url =  "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+	let param = "key=f5eef3421c602c6cb7ea224104795888&targetDt="
+				+ targetDt.value 
+				+"&repNationCd="+nationCd.value
+				
+	fetch(url + "?" + param)
+	//then(function(res) {return res.json	}	)
+	.then(res =>  res.json())
+	//.then( function(res) {})
+	.then(movie => {
+		let list =  movie.boxOfficeResult.dailyBoxOfficeList;
+		  for (mv of list){
+				document.getElementById("demo").innerHTML += mv.movieNm + ":" + mv.movieCd + "<br>" ;  
+			  }
+	})
+});
+btnInfo.addEventListener("click", function(){
+	let url =  "	http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
+	let param = "key=f5eef3421c602c6cb7ea224104795888&movieCd="
+				+ movieCd.value 
+				
+	fetch(url + "?" + param)
+	//then(function(res) {return res.json	}	)
+	.then(res =>  res.json())
+	//.then( function(res) {})
+	
+	.then(movie => {
+		
+		let alist =  movie.movieInfoResult.movieInfo.actors;
+		//console.log(alist);
+		let dlist =  movie.movieInfoResult.movieInfo.directors;
+		
+		  for (dmv of dlist){
+				document.getElementById("info").innerHTML += "영화감독 : " + dmv.peopleNm + "<br>" ;  
+			  }
+		  for (amv of alist){
+				document.getElementById("info").innerHTML += "영화배우 : " + amv.peopleNm + "<br>" ;  
+			  }
+
+	})
+});
+
+</script>
+</body>
+</html>

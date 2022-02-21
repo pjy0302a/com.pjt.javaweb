@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="form" action="event_proc.html" >
+        <label>이름 <input type="text" name="userid" id="userid"></label><br>
+        <!-- <input type="submit" value='저장'></button>  -->
+        <button>submit</button>
+    </form>
+
+    <a href="http://www.naver.com" id="abtn">naver</a><br>
+
+    <button type="button" id="btn" onclick="alert('button')">button</button><br>
+
+    <p id="log" onclick="alert('div');">p tag</p>
+    
+    <script>
+    	abtn.addEventListener('click',function(){
+    		alert('a tag');
+    		if(! confirm("할까요")){
+    		event.preventDefault();
+    		}
+    	});
+    	form.addEventListener('submit',function(){
+    		if(userid.value == ""){
+    			alert('이름 입력'); 
+    			event.preventDefault();
+    		}
+    		// event.preventDefault();
+    	});
+    	//onclick="alert('a tag'); event.preventDefault();
+ 
+    </script>
+</body>
+</html>	

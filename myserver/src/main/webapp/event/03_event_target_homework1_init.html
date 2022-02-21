@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+          span { display : none;} 
+
+    </style>
+</head>
+<body>
+	<input id="txtBook"><button type="button" id="btnAdd">등록</button>
+    <p class="word">list</p><span>2000</span>
+    <p class="word">nice</p><span>3000</span>
+    <p class="word">good</p><span>5000</span>
+   <div><p class="word">very</p><span>5000</span></div>
+	
+    <script>
+        var plist = document.getElementsByClassName("word");
+        for (temp of plist) {
+        	temp.addEventListener("click", function(){
+        	const price = event.target.nextElementSibling.innerHTML;
+        	alert(price);
+        	})
+        }
+        //사과,2000
+        btnAdd.addEventListener("click",function(){
+        	//document.body
+        	let arr = txtBook.value.split(",")
+        	//console.log(arr);
+      /*  	let pnode = document.createElement("p");
+        	pnode.innerHTML = arr[0];
+        	document.body.append(pnode);
+        	
+        	let snode = document.createElement("span");
+        	snode.innerHTML = arr[1];
+        	document.body.append(snode);  */
+        	let div = document.createElement("div");
+        	div.innerHTML = `<p class="word">${arr[0]}</p><span>${arr[1]}</span>`;
+ 
+        	document.body.append(div);
+       
+        });
+    </script>
+</body>
+</html>
