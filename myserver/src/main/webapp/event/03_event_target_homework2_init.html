@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <style>
-        span { display : none;}
-
-    </style>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+span {
+	display: none;
+}
+</style>
 </head>
 <body>
 	<input id="txtBook">
 	<input id="price">
 	<button type="button" id="btnAdd">등록</button>
-<div id="list">
-    <div data-price="2000"><p class="word">list</p></div>
-    <div data-price="2000"><p class="word">nice</p></div>
-    <div data-price="2000"><p class="word">good</p></div>
-    <div data-price="2000"><p class="word">very</p></div>
-</div>
-    <script>
-        var plist = document.getElementsByClassName("word");
-        for (temp of plist) {
- 		
-        }
-    </script>
+	<div id="list">
+		<!--  <div data-price="2000">
+			<p class="word">list</p>
+		</div>
+		<div data-price="2000">
+			<p class="word">nice</p>
+		</div>
+		<div data-price="2000">
+			<p class="word">good</p>
+		</div>
+		<div data-price="2000">
+			<p class="word">very</p>
+		</div>-->
+	</div>
+	<script>
+		var plist = document.getElementsByClassName("word");
+		
+		let text = txtBook.value
+		console.log(document.querySelector("#input > #price"));
+		//console.log(div.dataset.price);
+		btnAdd.addEventListener("click", function() {
+			//console.log(document.querySelector("#price").value);
+			let div = document.createElement('div');
+			list.append(div);
+			div = document.querySelector("#list > div");
+			innerHTML = div.setAttribute("data-price", document.querySelector("#price").value);
+			div.innerHTML = `<p class="word">${txtBook.value}</p>`;
+
+			//console.log(innerHTML.dataset.price);
+		})
+
+		/*for (temp of plist) {
+			console.log(temp);
+		}*/
+	</script>
 </body>
 </html>

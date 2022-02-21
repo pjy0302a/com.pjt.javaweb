@@ -133,6 +133,7 @@
 	        console.log(delAjax.responseText);
 	        var result = JSON.parse(delAjax.responseText);
 	        console.log(result);
+	        console.log(result.retCode);
 	        if(result.retCode == 'OK'){
 	           alert('정상적으로 처리되었습니다.')
 	           document.getElementById(id).remove();
