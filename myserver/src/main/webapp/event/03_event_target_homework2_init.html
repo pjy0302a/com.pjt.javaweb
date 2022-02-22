@@ -26,21 +26,23 @@ span {
 		<div data-price="2000">
 			<p class="word">very</p>
 		</div>
+		
 	</div>
 	<script>
-		var plist = document.getElementsByClassName("word");
 		
-		console.log(document.querySelector("#input > #price"));
-		//console.log(div.dataset.price);
+    		//temp = list.getElementsByTagName('p');
+			//console.log(temp);
+    		list.addEventListener("click", function(){
+        	const price = event.target.parentNode.getAttribute('data-price');
+            alert(price);
+			
+        	})
+        	
 		btnAdd.addEventListener("click", function() {
-			//console.log(document.querySelector("#price").value);
 			let div = document.createElement('div');
 			list.append(div);
-			//div = document.querySelector("#list > div");
-			div.innerHTML = div.setAttribute("data-price", price.value);
-			div.innerHTML += `<p class="word">${txtBook.value}</p>`;
-
-			//console.log(innerHTML.dataset.price);
+		    div.setAttribute("data-price", price.value);
+			div.innerHTML = `<p class="word">${txtBook.value}</p>`;
 		})
 
 		/*for (temp of plist) {
