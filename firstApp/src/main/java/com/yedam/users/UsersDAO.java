@@ -90,13 +90,13 @@ public class UsersDAO {
 		}
 
 		// 단건조회
-		public Users selectOne(int id) {
+		public Users selectOne(String id) {
 			Users user = null;
 			try {
 				connect();
 				String select = "SELECT * FROM Users WHERE id = ?";
 				pstmt = conn.prepareStatement(select);
-				pstmt.setInt(1, id);
+				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					user = new Users();
@@ -150,11 +150,18 @@ public class UsersDAO {
 		public void update(Users user) {
 			try {
 				connect();
-				String update = "UPDATE Users SET pwd = ? WHERE id = ?";
+				String update = "UPDATE Users SET id=?,pwd=?,name=?,hobby=?,gender=?,religion=?,introduction=? WHERE id = ?";
 				pstmt = conn.prepareStatement(update);
 				
-				pstmt.setString(1, user.getPwd());
-				pstmt.setString(2, user.getId());
+				pstmt.setString(1, user.getId());
+				pstmt.setString(2, user.getPwd());
+				pstmt.setString(3, user.getName());
+				pstmt.setString(4, user.getHobby());
+				pstmt.setString(5, user.getGender());
+				pstmt.setString(6, user.getReligion());
+				pstmt.setString(7, user.getIntroduction());
+				pstmt.setString(8, user.getId());
+				
 				
 				int result = pstmt.executeUpdate();
 				

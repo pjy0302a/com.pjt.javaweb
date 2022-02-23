@@ -12,23 +12,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.CommonUtil;
-import com.yedam.employee.Employee;
-import com.yedam.employee.EmployeesDAO;
 
 /**
  * Servlet implementation class EmpInsertContoller
  */
-@WebServlet("/UsersInsert")
-public class UsersInsertContoller extends HttpServlet {
+@WebServlet("/UserUpdate")
+public class UserUpdateContoller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	@Override //사원등록페이지로 이동
+	@Override //사원수정페이지로 이동
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/member.jsp")
+		//사번파라미터
+		String id = request.getParameter("id");
+		//단건조회
+		Users users = UsersDAO.getInstance().selectOne(id);
+		//request에 결과 저장하고
+		request.setAttribute("users", users);
+		//request.setAttribute("jobList", UsersDAO.getInstance().selectJobs());
+		//request.setAttribute("jobList", EmployeesDAO.getInstance().selectJobs());
+		request.getRequestDispatcher("/WEB-INF/views/usersUpdate.jsp")
 		   .forward(request, response);
 	}
-
+	
 	//사원등록처리 후에 목록으로 이동
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터 인코딩
@@ -39,7 +45,6 @@ public class UsersInsertContoller extends HttpServlet {
 		user.setPwd(request.getParameter("pwd"));
 		user.setName(request.getParameter("name"));
 		//user.setHobby(request.getParameter("hobby"));
-		System.out.println(request.getParameter("hobby"));
 		user.setGender(request.getParameter("gender"));
 		user.setReligion(request.getParameter("religion"));
 		user.setIntroduction(request.getParameter("introduction"));
@@ -55,7 +60,7 @@ public class UsersInsertContoller extends HttpServlet {
 		//파라미터 모두 확인
 		CommonUtil.printParameter(request);
 		//서비스호출
-		UsersDAO.getInstance().insert(user);
+		UsersDAO.getInstance().update(user);
 		//페이지 이동
 		response.sendRedirect(request.getContextPath() + "/UserList");
 

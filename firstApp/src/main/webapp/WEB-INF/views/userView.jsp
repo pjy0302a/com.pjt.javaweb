@@ -26,17 +26,24 @@ ${emplist[0].getFirstName()}
 ${fn:length(emplist)} 건
 	<table>
 		<tr>
-			<td>사번</td>
+			<td>id</td>
+			<td>비밀번호</td>
 			<td>이름</td>
-			<td>부서번호</td>
-			<td>급여</td>
+			<td>취미</td>
+			<td>성별</td>
+			<td>종교</td>
+			<td>자기소개</td>
+	
 		</tr>
 		<c:forEach items="${userlist}" var="user">
-			<tr><td>${emp.getFirstName()}</td>
-				<td><a href="empUpdate?employeeId=${emp.employeeId}">
-				${emp.getFirstName()} ${emp.lastName}</a></td>
-				<td>${emp.departmentId}</td>
-				<td  <c:if test="${emp.salary>=10000}">class="imp"</c:if>>${emp.salary}</td>
+			<tr><td>${user.id}</td>
+				<td>${user.pwd}</td>
+				<td><a href="UserUpdate?id=${user.id}">
+				${user.name}</a></td>
+				<td>${user.hobby}</td>
+				<td>${user.gender}</td>
+				<td>${user.religion}</td>
+				<td>${user.introduction}</td>
 			</tr>
 		</c:forEach>
 	</table>

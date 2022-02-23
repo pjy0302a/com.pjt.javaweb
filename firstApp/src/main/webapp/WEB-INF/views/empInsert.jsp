@@ -20,7 +20,7 @@
 	</select><br>
 	department_id<select name="department_id">
 					<option value="">선택</option>
-					반복
+					
 					</select><br>
 	hire_date<input name="hire_date" type="date"><br>
 	<input name="hobby" type="checkbox" value="ski">스키

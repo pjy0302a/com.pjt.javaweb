@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<h1>mvc패턴</h1>
+<h1>MVC패턴</h1>
 
 <%--
 List<Employee> obj = (List<Employee>)request.getAttribute("emplist");
