@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form id="form" action="firstApp/UsersInsert" method="GET">
+<form id="form" action="" method="POST">
 	ID : <input type="text" id= "name" name="id"><br>
 	비밀번호 : <input type="password" name="pwd"><br>
 	이름 : <input type="text" name="name"><br>
