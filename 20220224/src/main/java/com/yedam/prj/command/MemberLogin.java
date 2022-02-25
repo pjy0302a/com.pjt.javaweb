@@ -18,6 +18,7 @@ public class MemberLogin implements Command {
 		MemberVO vo = new MemberVO();
 		HttpSession session = request.getSession();	//서버가 가지고 있는 나의 세션 객체를 호출
 		vo.setId(request.getParameter("id"));
+		//System.out.println("vo get id : " + vo.getId());
 		vo.setPassword(request.getParameter("password"));
 		
 		vo = memberDao.memberLogin(vo);
@@ -27,11 +28,13 @@ public class MemberLogin implements Command {
 			session.setAttribute("id", vo.getId());	//세션 아이디 담기
 			session.setAttribute("author", vo.getAuthor()); //권한 
 			session.setAttribute("name", vo.getName()); 	//이름
-			request.setAttribute("message", vo.getName() + "님 환영합니다.");
+			return "home.do";
+//			request.setAttribute("message", vo.getName() + "님 환영합니다.");
 		}else {
-			request.setAttribute("message", "아이디 또는 패스워드가 일치하지 않습니다.");
+			request.setAttribute("message", "아이디 또는 패스워드가 일치하지않습니다.");
+			return "member/memberLogin";
 		}
-		return "member/memberLogin";
+		
 	}
 
 }

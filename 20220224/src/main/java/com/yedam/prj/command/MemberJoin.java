@@ -24,11 +24,11 @@ public class MemberJoin implements Command {
 		
 		int n = memberDao.memberInsert(vo);
 		if(n != 0) {
-			request.setAttribute("message", vo.getName() + "님 가입을 축하합니다.");
+			return "member/loginForm";
 		}else {
-			request.setAttribute("message", "회원가입이 실패하였습니다.");
+			return "member/memberResisterForm";
 		}
-		return "member/memberLogin";
+		
 	}
 
 }

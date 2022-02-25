@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.prj.command.AjaxIdCheck;
 import com.yedam.prj.command.HomeCommand;
 import com.yedam.prj.command.LoginForm;
+import com.yedam.prj.command.MemberDelete;
 import com.yedam.prj.command.MemberJoin;
 import com.yedam.prj.command.MemberJoinForm;
 import com.yedam.prj.command.MemberList;
@@ -45,6 +47,8 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new logout()); //로그아웃 처리
 		map.put("/memberJoinForm.do", new MemberJoinForm());
 		map.put("/memberJoin.do", new MemberJoin());
+		map.put("/ajaxIdCheck.do", new AjaxIdCheck()); //아이디 중복체크(ajax)
+		map.put("/memberDelete.do", new MemberDelete()); 
 	}
 
 
@@ -63,7 +67,13 @@ public class FrontController extends HttpServlet {
 		System.out.println("command : " + command);
 		System.out.println("viewPage : " + viewPage);
 		if(viewPage != null && !viewPage.endsWith(".do")) {	//view Resolve
+			if(viewPage.startsWith("ajax:")) {	//ajax를 처리하기위해
+				response.setContentType("text/html;");
+				response.getWriter().append(viewPage.substring(5));
+				return;
+			}else {
 			viewPage = "WEB-INF/views/" + viewPage + ".jsp";
+			}
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
