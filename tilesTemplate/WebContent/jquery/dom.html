@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery/dom.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		let fName = $('#container>div.row:nth-child(2)>span').html();
+		console.log(fName);
+		
+		$('#container>div.row:nth-child(1)>button').html('Delete')
+		
+		let butns = $('#container>div.row>button');
+		console.log(butns);
+		butns.each(function(ind, item){
+			console.log(item, ind);
+			$(item).html('Del');	//jQuery 오브젝트 html속성변경.
+			//item.innerHTML = 'Del';	//javascript 오브젝트
+			if(ind !=0){
+			$(item).on('click',function(){	// addEventListener('click', function() {})
+				console.log(this);	// this => <button>Del</button>, $this => ..init[button]
+				//this.parentNode.remove(); // javascript 노드
+				$(this).parent().remove();	// jquery오브젝트	
+			});		//onclick, ondalclick
+			//$(item).click(function())
+			}
+			
+		});
+	});
+</script>
+</head>
+<body>
+
+	<div id="container">
+		<div class="row"><span>홍길동</span> <button>삭제</button></div>
+		<div class="row"><span>김민수</span> <button>삭제</button></div>
+		<div class="row"><span>박문식</span> <button>삭제</button></div>
+		<div class="col"><span>최우식</span> <button>삭제</button></div>
+	</div>
+</body>
+</html>

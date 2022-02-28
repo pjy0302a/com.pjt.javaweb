@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery/ajax.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+// $.ajax(); => XMLHttpRequest, fetch(url); url, responseText, send(id=35&name=Hong))
+	$(function(){	//$(document).ready 생략
+		$.ajax({
+			url: 'basic2.html',	//요청페이지
+			method: 'get',	//요청방식 : get, post
+			data: {id:30, name:'hong'},	//parameter로 넘길 값.
+			success: function(result){
+				console.log(result);
+				$('#show').html(result);
+			},
+			error: function(reject){
+				console.log(reject);
+				$('#show').html('<h3>status: ' + reject.status + " error: " + reject.statusText + "</h3>");
+			}
+		});
+	})
+</script>
+</head>
+<body>
+	<div id="show"></div>
+</body>
+</html>
