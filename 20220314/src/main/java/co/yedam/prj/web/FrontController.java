@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.prj.common.Command;
 import co.yedam.prj.home.command.HomeCommand;
 import co.yedam.prj.member.command.MemberList;
+import co.yedam.prj.member.command.MemberLogin;
 import co.yedam.prj.member.command.MemberSearch;
+import co.yedam.prj.member.command.ajaxMemberIdCheck;
+import co.yedam.prj.member.command.memberJoin;
+import co.yedam.prj.member.command.memberJoinForm;
 
 
 
@@ -37,6 +41,10 @@ public class FrontController extends HttpServlet {
 		map.put("/home.do", new HomeCommand());
 		map.put("/memberList.do", new MemberList());
 		map.put("/memberSearch.do", new MemberSearch());
+		map.put("/memberLogin.do", new MemberLogin());
+		map.put("/ajaxMemberIdCheck.do", new ajaxMemberIdCheck()); //ajax로 아이디 중복체크
+		map.put("/memberJoinForm.do", new memberJoinForm()); //ajax로 아이디 중복체크
+		map.put("/memberJoin.do", new memberJoin()); //ajax로 아이디 중복체크
 	}
 
 	/**
@@ -54,6 +62,9 @@ public class FrontController extends HttpServlet {
 		if(!viewPage.endsWith(".do")) {
 			if(viewPage.startsWith("ajax:")) {
 				//ajax 처리
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().append(viewPage.substring(5));
+				return;
 			}else {
 				viewPage = "WEB-INF/views/" + viewPage + ".jsp";
 			}
