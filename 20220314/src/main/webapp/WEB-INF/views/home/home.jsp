@@ -13,6 +13,7 @@
 	<a href="memberSearch.do">홍길동 가져오기</a><p>
 	<a href="memberLogin.do">로그인</a><p>
 	<a href="memberJoinForm.do">회원가입</a><p>
+	<a href="borderList.do">게시글 목록</a><p>
 		
 </div>
 <div id="wrap">

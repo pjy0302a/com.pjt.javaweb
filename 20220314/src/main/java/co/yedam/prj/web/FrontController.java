@@ -11,14 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.prj.border.command.AjaxBorderSearch;
+import co.yedam.prj.border.command.AjaxSortBorder;
+import co.yedam.prj.border.command.BorderInsert;
+import co.yedam.prj.border.command.BorderInsertForm;
+import co.yedam.prj.border.command.BorderList;
+import co.yedam.prj.border.command.BorderView;
 import co.yedam.prj.common.Command;
 import co.yedam.prj.home.command.HomeCommand;
+import co.yedam.prj.member.command.MemberJoin;
+import co.yedam.prj.member.command.MemberJoinForm;
 import co.yedam.prj.member.command.MemberList;
 import co.yedam.prj.member.command.MemberLogin;
 import co.yedam.prj.member.command.MemberSearch;
 import co.yedam.prj.member.command.ajaxMemberIdCheck;
-import co.yedam.prj.member.command.memberJoin;
-import co.yedam.prj.member.command.memberJoinForm;
 
 
 
@@ -43,8 +49,14 @@ public class FrontController extends HttpServlet {
 		map.put("/memberSearch.do", new MemberSearch());
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/ajaxMemberIdCheck.do", new ajaxMemberIdCheck()); //ajax로 아이디 중복체크
-		map.put("/memberJoinForm.do", new memberJoinForm()); //ajax로 아이디 중복체크
-		map.put("/memberJoin.do", new memberJoin()); //ajax로 아이디 중복체크
+		map.put("/memberJoinForm.do", new MemberJoinForm()); 
+		map.put("/memberJoin.do", new MemberJoin()); 
+		map.put("/borderList.do", new BorderList()); 
+		map.put("/borderInsertForm.do", new BorderInsertForm());//게시글 작성폼 호출
+		map.put("/borderInsert.do", new BorderInsert());//게시글 등록
+		map.put("/borderView.do", new BorderView());//게시글 상세보기
+		map.put("/ajaxBorderSearch.do", new AjaxBorderSearch());	//게시글 리스트에서 검색
+		map.put("/ajaxSortBorder.do", new AjaxSortBorder());
 	}
 
 	/**
@@ -66,7 +78,8 @@ public class FrontController extends HttpServlet {
 				response.getWriter().append(viewPage.substring(5));
 				return;
 			}else {
-				viewPage = "WEB-INF/views/" + viewPage + ".jsp";
+//				viewPage = "WEB-INF/views/" + viewPage + ".jsp";
+				viewPage = viewPage + ".tiles";
 			}
 		}
 		

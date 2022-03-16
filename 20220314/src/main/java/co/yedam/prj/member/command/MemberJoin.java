@@ -8,7 +8,7 @@ import co.yedam.prj.member.service.MemberService;
 import co.yedam.prj.member.service.MemberVO;
 import co.yedam.prj.member.serviceImpl.MemberServiceImpl;
 
-public class memberJoin implements Command {
+public class MemberJoin implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
