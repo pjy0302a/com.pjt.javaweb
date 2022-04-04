@@ -80,7 +80,7 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String path = uri.substring(contextPath.length());
-
+		
 		DbCommand dbCommand = map.get(path);
 		String viewPage = dbCommand.execute(request, response);
 

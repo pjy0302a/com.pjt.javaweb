@@ -16,7 +16,7 @@ public class NoticeController {
 	@RequestMapping("/noticeList.do")
 	public String noticeList(Model model) {
 		//리스트 가져오는거 처리
-		model.addAttribute("notices", noticeDao.noticeSelectList());
+		model.addAttribute("notices",noticeDao.noticeSelectList());
 		return "notice/noticeList";
 	}
 	

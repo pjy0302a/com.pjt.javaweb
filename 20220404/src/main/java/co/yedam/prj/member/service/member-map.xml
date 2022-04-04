@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.prj.member.service.MemberMapper">
-   <select id="memberSelectList" resultType="co.yedam.prj.member.vo.MemberVO">
-      SELECT * from MEMBER
-   </select>
-   <select id="memberSelect">
-   
-   </select>
-   <select id="memberInsert">
-   
-   </select>
-   <select id="memberDelete">
-   
-   </select>
-   <select id="memberUpdate">
-   
-   </select>
+	<select id="memberSelectList"
+		resultType="co.yedam.prj.member.vo.MemberVO">
+		SELECT * from MEMBER
+	</select>
+	<select id="memberSelect">
+
+	</select>
+	<insert id="memberInsert">
+
+	</insert>
+	<delete id="memberDelete">
+
+	</delete>
+	<update id="memberUpdate">
+
+	</update>
 </mapper>
 
