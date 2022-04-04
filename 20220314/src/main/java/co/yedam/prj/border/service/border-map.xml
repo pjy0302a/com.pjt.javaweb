@@ -13,7 +13,7 @@
 		SELECT * FROM border ORDER BY border_id DESC
 	</select>
 	<select id="borderSelect" parameterType="co.yedam.prj.border.service.BorderVO" resultMap="borderMap">
-		SELECT * FROM BORDER WHERE BORDER_ID = #{borderId}
+		SELECT * FROM BORDER WHERE border_id = #{borderId}
 	</select>
 	<select id="borderSortList" parameterType="String" resultMap="borderMap">
 		SELECT * FROM BORDER ORDER BY BORDER_ID

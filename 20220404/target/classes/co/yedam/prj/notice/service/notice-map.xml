@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.prj.notice.service.NoticeMapper">
+	<select id="noticeSelectList">
+		SELECT * FROM NOTICE ORDER BY ID DESC
+	</select>
+	<select id="noticeSelect"></select>
+	<insert id="noticeInsert"></insert>
+	<delete id="noticeDelete"></delete>
+	<update id="noticeUpdate"></update>
+</mapper>

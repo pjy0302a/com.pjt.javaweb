@@ -22,10 +22,10 @@
 		UPDATE MEMBER
 		<set>
 			<if test="password != null">SET PASSWORD = #{password},</if>
-			<if test="name != null">SET NAME = #{name},</if>
-			<if test="tel != null">SET TEL = #{tel},</if>
-			<if test="address != null">SET ADDRESS = #{address},</if>
-			<if test="author != null">SET AUTHOR = #{author}</if>
+			<if test="name != null"> NAME = #{name},</if>
+			<if test="tel != null"> TEL = #{tel},</if>
+			<if test="address != null"> ADDRESS = #{address},</if>
+			<if test="author != null"> AUTHOR = #{author},</if>
 		</set>
 		where id= #{id}
 	</update>
